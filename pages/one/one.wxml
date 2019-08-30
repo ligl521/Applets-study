@@ -1,0 +1,20 @@
+<!--pages/one/one.wxml-->
+<text class="nav">pages/one/one.wxml</text>
+<include src="/pages/stype/nav.wxml" />
+<view class="box">2321341545</view>
+<include src="/pages/stype/foots.wxml" />
+
+<!-- //js -->
+<!-- <wxs></wxs> -->
+<wxs src="../wxs/info.wxs" module="info" />
+<view>{{info.lgl}}</view>
+<!-- <wxs module="info">
+  var lgl = "李国龙"
+  module.exports = {
+    lgl : lgl
+  }
+</wxs> -->
+
+
+
+

@@ -1,0 +1,4 @@
+var lgl = "李国龙"
+module.exports = {
+  lgl: lgl
+}

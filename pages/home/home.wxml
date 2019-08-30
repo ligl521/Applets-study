@@ -1,0 +1,14 @@
+<!--pages/home/home.wxml-->
+<text>pages/home/home.wxml</text>
+<input></input>
+<view wx:for="{{name}}" wx:for-item="ss" wx:key="{{index}}">
+  <!-- <view wx:for="{{ss}}" wx:for-item="dd" wx:key="{{index}}">{{dd}}</view> -->
+
+</view>
+
+<!-- 模板 -->
+<import src="/pages/template/template.wxml" />
+<template is="temp" data="{{btn:'警告',conrten:'22222'}}" />
+<template is="temp" data="{{btn:'点击',conrten:'李国龙'}}" />
+
+<image src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>

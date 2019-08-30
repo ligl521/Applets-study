@@ -1,0 +1,6 @@
+<!--pages/template/template.wxml.wxml-->
+<text>pages/template/template.wxml.wxml</text>
+<template name="temp">
+  <button>{{btn}}</button>
+  <view>{{conrten}}</view>
+</template>

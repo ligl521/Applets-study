@@ -1,0 +1,7 @@
+function two(twoData,number){
+  var number = number || 2;
+  return twoData.toFixed(number)
+}
+module.exports = {
+  two :two 
+}
