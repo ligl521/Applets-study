@@ -1,11 +1,14 @@
 {
   "pages": [
     "pages/control/control",
-    "pages/two/two",
-    "pages/one/one",
+    "pages/Bubbling/Bubbling",
     "pages/home/home",
     "pages/index/index",
+    "components/my-123/my-123",
+    "components/my-cpn/my-cpn",
     "pages/template/template.wxml",
+    "pages/one/one",
+    "pages/two/two",
     "pages/logs/logs"
   ],
   "window": {
@@ -15,18 +18,20 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "text"
-    },{
-      "pagePath": "pages/logs/logs",
-      "text": "text"
-     
-    },{
-      "pagePath": "pages/home/home",
-      "text": "text"
-     
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "text"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "text"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "text": "text"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

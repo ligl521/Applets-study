@@ -1,0 +1,13 @@
+<!--pages/Bubbling/Bubbling.wxml-->
+<view>当前计数：{{numbonw}}</view>
+<my-cpn bind:increment="handle"></my-cpn>
+<text>pages/Bubbling/Bubbling.wxml</text>
+<view class="one" catchtap="one" capture-catch:tap="onel">
+  <view class="two" catchtap="two" capture-catch:tap="twol">
+    <view class="three" catchtap="three" capture-catch:tap="threel"></view>
+  </view>
+</view>
+<my-123 titel="哈哈哈" titleclass="red"/>
+<my-123 titel="呵呵呵" titleclass="pink"/>
+<my-123 titel="嘿嘿嘿" titleclass="blue"/>
+<my-123 titleclass="green" /> 

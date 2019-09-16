@@ -1,0 +1,4 @@
+<!--components/my-123/my-123.wxml-->
+<view class="titleclass">{{titel}}</view>
+<text>components/my-123/my-123.wxml</text>
+<text></text>

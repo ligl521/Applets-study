@@ -1,25 +1,36 @@
-// pages/home/home.js
+// pages/Bubbling/Bubbling.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    index:"11111",
-    name:[
-      [11,2,2,3,3,3,65],
-      [245,54,"hj","jhjh","uj"],
-      [78,787,854,234,452]
-    ],
-    numberHome:1
+    numbonw:0
   },
-  abtn:function(){
-    console.log(this.data.numberHome)
+  handle:function(){
     this.setData({
-      numberHome: this.data.numberHome+1
+      numbonw: this.data.numbonw+1
     })
+    console.log(11111)
   },
-
+  one:function(){
+    console.log("one")
+  },
+  two:function(){
+    console.log("two")
+  },
+  three:function(){
+    console.log("three")
+  },
+  onel: function () {
+    console.log("onel")
+  },
+  twol: function () {
+    console.log("twol")
+  },
+  threel: function () {
+    console.log("threel")
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -31,15 +42,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log(getApp())
-    const app = getApp();
-    console.log(app.globalData.lgl);
-    
-    wx.getUserInfo({
-      success:function(res){
-        // console.log(res)
-      }
-    })
+
   },
 
   /**
