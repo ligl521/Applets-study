@@ -1,0 +1,7 @@
+<!--pages/control/control.wxml-->
+<view>lgl</view>
+<text>pages/control/control.wxml-</text>
+<tab-control titles="{{['衣服','鞋子','袜子']}}" 
+             bind:itemclick="btnadd"/>
+<view wx:for="{{titles}}" wx:key="{{index}}">{{item}}</view>
+<text>{{aa}}</text>

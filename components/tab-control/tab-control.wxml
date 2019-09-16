@@ -1,0 +1,10 @@
+<!--components/tab-control/tab-control.wxml-->
+<view>------------------</view>
+<block wx:for="{{titles}}" wx:key="{{index}}">
+  <view>
+    <text bind:tap='btn' data-index="{{index}}">
+      {{item}}
+    </text>
+    </view>
+</block>
+<text>-----------</text>

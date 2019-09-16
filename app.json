@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/control/control",
     "pages/two/two",
     "pages/one/one",
     "pages/home/home",
