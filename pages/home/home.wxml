@@ -5,8 +5,11 @@
   <!-- <view wx:for="{{ss}}" wx:for-item="dd" wx:key="{{index}}">{{dd}}</view> -->
 
 </view>
+<view>{{numberHome}}</view>
+<view bindtap="abtn">7454545</view>
 
-<!-- 模板 -->
+
+<!-- 模板 引入 -->
 <import src="/pages/template/template.wxml" />
 <template is="temp" data="{{btn:'警告',conrten:'22222'}}" />
 <template is="temp" data="{{btn:'点击',conrten:'李国龙'}}" />

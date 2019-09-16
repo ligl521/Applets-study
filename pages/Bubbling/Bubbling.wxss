@@ -1,0 +1,25 @@
+/* pages/Bubbling/Bubbling.wxss */
+.one{
+  width: 200rpx;
+  height: 200rpx;
+  background: red;
+}
+.two{
+  width: 150rpx;
+  height: 150rpx;
+  background: green
+}
+.three{
+  width: 100rpx;
+  height: 100rpx;
+  background: blueviolet;
+}
+.red{
+  color: red;
+}
+.pink{
+  color: pink;
+}
+.blue{
+  color: blue;
+}

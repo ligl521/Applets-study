@@ -1,0 +1,4 @@
+<!--components/my-cpn/my-cpn.wxml-->
+<button bindtap="jiaone">+1</button>
+<text>components/my-cpn/my-cpn.wxml</text>
+<view>lgl555555555</view>
