@@ -1,7 +1,19 @@
 <!--pages/control/control.wxml-->
 <view>lgl</view>
 <text>pages/control/control.wxml-</text>
-<tab-control titles="{{['衣服','鞋子','袜子']}}" 
+
+<!-- 父组件里引入 子组件 -->
+    <tab-control titles="{{['衣服','鞋子','袜子']}}" 
              bind:itemclick="btnadd"/>
-<view wx:for="{{titles}}" wx:key="{{index}}">{{item}}</view>
-<text>{{aa}}</text>
+
+ 
+<button size="mini" bindtap="handleAdd">点击+10</button>  
+<my-addten class="addbtn"/>  
+<!-- 单个插槽 -->
+<my-slot>
+  <button>按钮</button>
+</my-slot>
+<!-- 多个单个插槽 -->
+<my-mslot>
+    <button size="mini" slot="mslot1">123</button>
+</my-mslot>

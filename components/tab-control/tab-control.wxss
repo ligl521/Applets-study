@@ -1,1 +1,4 @@
 /* components/tab-control/tab-control.wxss */
+.aa{
+  display: flex;
+}

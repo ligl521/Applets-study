@@ -1,0 +1,2 @@
+<!--components/my-addten.wxml-->
+<text>{{numadd}}</text>

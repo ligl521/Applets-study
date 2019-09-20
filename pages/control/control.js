@@ -8,9 +8,28 @@ Page({
     titles:['adawad','adada'],
     aa:"李国龙 李国龙"
   },
+  //接受子组件发送的数据
   btnadd:function(event){
     console.log("------",event)
   },
+  //点击＋10的事件
+  handleAdd:function(){
+      1.//获取组件对象
+      let my_add = this.selectComponent(".addbtn")
+      
+      //2.重新赋值
+      // my_add.setData({
+      //   numadd: my_add.data.numadd+10
+      // })
+
+      //3.通过方法对数据修改
+      my_add.incrementCounter(10)
+
+  },
+
+
+
+
   /**
    * 生命周期函数--监听页面加载
    */

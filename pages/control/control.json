@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    "tab-control":"/components/tab-control/tab-control"
+    "tab-control":"/components/tab-control/tab-control",
+    "my-addten": "/components/my-addten/my-addten",
+    "my-slot": "/components/my-slot/my-slot",
+    "my-mslot": "/components/my-mslot/my-mslot"
   }
 }
