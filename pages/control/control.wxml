@@ -17,3 +17,13 @@
 <my-mslot>
     <button size="mini" slot="mslot1">123</button>
 </my-mslot>
+
+
+<!-- 自定义返回 -->
+<navigator open-type='navigateBack'>自定义返回</navigator>
+
+<!-- 自定义返回  delta返回两级-->
+<navigator open-type='navigateBack' delta='2'>自定义返回</navigator>
+
+<!-- 代码返回 -->
+<view bindtap='backbtn'>返回</view>

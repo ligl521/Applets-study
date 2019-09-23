@@ -12,6 +12,12 @@ Page({
   btnadd:function(event){
     console.log("------",event)
   },
+  // js 详情返回
+  backbtn(){
+    wx.navigateBack({
+      delta:1 //跳转层级
+    })
+  },
   //点击＋10的事件
   handleAdd:function(){
       1.//获取组件对象
@@ -34,7 +40,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    //取值
+    console.log(options)
   },
 
   /**
@@ -62,7 +69,15 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    //1.获取首页的页面对象
+    //getCurrenPages当前所有栈的页面
+    const pages = getCurrentPages();
+    //获取第一个目标对象
+    const home = pages[pages.length-2];
+    //调用setData页面对象
+    home.setData({
+      title:"two"
+    })
   },
 
   /**

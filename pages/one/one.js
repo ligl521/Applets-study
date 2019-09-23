@@ -1,19 +1,96 @@
 // pages/one/one.js
+import request from "../../service/network.js"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    dataList:[],
+    title:"one"
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  // js代码展示
+  detailbtn(){
+    wx:wx.navigateTo({
+      url: '/pages/control/control'
+    })  
+  },
+  //展示弹框
+  handeleshowToast(){
+    wx.showToast({
+      title:"成功",//显示文字
+      icon:"loading", //图标  默认成功
+      duration:2000, //延时时间
+      image:"../../one.img", //自定义图标
+      mask:true, //遮罩层
+      success:function(){  //失败回调
+        console.log("成功回调")
+      },
+      fail:function(){  //失败回调
+        console.log("失败的回调")
+      },
+      complete:function(){ //完成时调用
+        console.log("完成函数的调用")
+      }
+    })
+    console.log("======")
+  },
+  //确定取消按钮
+  handeleshowModal(){
+    wx.showModal({
+      title: '确定取消按钮', //标题
+      content: '我是内容',  //内容
+      showCancel:true, //取消按钮是否显示 false不显示
+      cancelText:"退出", //修改取消按钮显示文字
+      success:function(res){  //成功回调
+        console.log(res)
+        if(res.cancel){  //用户点击取消按钮
+          console.log("用户点击取消按钮")
+        };
+        if(res.confirm){ //用户你点击确定按钮
+          console.log("用户点击确定按钮")
+        }
+      }
+    })
+  },
+  //loding加载
+  handeleshowLoading(){
+    wx.showLoading({
+      title: '加载中',
+      mask:true  //遮罩层
+    })
+    //取消loding
+    wx.hideLoading()
+  },
+  // 生命周期函数--监听页面加载
   onLoad: function (options) {
-
-  },
+    //获取数据
+    request({
+      url: '/visit/manager/school/list.do',
+      method:"get",
+      data:{
+      },
+    }).then(res => {
+      this.setData({
+        dataList:res.data.data.list
+      })
+    }).catch(err => {
+      console.log(err)
+    })
+  }, 
+  // onLoad: function (options) {
+  //   wx.request({
+  //     url: 'http://123.207.32.32:8080/home/data',
+  //     method:"post",
+  //     data:{
+  //       type:"sell",
+  //       page:"1"
+  //     },
+  //     success: function (res) {
+  //       console.log(res)
+  //     }
+  //   })
+  // },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -60,7 +137,11 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (options) {
+    return{
+      title:"hello lgl", //转发显示标题
+      path:"pages/one/one", //转发当前的页面
+      imageUrl:"https://tidu.com/timg.jpg"  //转发显示的图片
+    }
   }
 })

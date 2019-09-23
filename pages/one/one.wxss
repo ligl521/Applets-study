@@ -1,3 +1,7 @@
 /* pages/one/one.wxss */
 @import "/pages/one/stype/one-1.wxss";
 @import "/pages/one/stype/one-2.wxss"
+
+.red{
+  color: red;
+}

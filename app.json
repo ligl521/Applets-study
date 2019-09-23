@@ -1,12 +1,12 @@
 {
   "pages": [
+    "pages/one/one",
     "pages/control/control",
     "pages/home/home",
     "components/my-123/my-123",
     "pages/Bubbling/Bubbling",
     "components/my-cpn/my-cpn",
     "pages/template/template.wxml",
-    "pages/one/one",
     "pages/two/two"
   ],
   "window": {
