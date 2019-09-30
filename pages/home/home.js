@@ -81,6 +81,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: "开发版 李国龙", //转发显示标题
+      path: "pages/home/home", //转发当前的页面
+      imageUrl: "https://img03.sogoucdn.com/app/a/100520093/6270c5456a002579-393298cca4ae5d06-cf2f095a923820e092f2d2a94561598e.jpg"  //转发显示的图片
+    }
   }
 })

@@ -1,11 +1,12 @@
 {
   "pages": [
+    "pages/home/home",
+    "pages/Panorama/Panorama",
     "pages/one/one",
     "pages/control/control",
-    "pages/home/home",
-    "components/my-123/my-123",
-    "pages/Bubbling/Bubbling",
     "components/my-cpn/my-cpn",
+    "pages/Bubbling/Bubbling",
+    "components/my-123/my-123",
     "pages/template/template.wxml",
     "pages/two/two"
   ],
@@ -25,14 +26,24 @@
         "text": "text"
       },
       {
-        "pagePath": "components/my-123/my-123",
+        "pagePath": "pages/one/one",
         "text": "text"
       },
       {
         "pagePath": "components/my-cpn/my-cpn",
         "text": "text"
+      },
+      {
+        "pagePath": "pages/Panorama/Panorama",
+        "text": "text"
       }
     ]
+  },
+  "plugins": {
+    "wxPano": {
+      "version": "1.4.2",
+      "provider": "wx386c038238531f87"
+    }
   },
   "sitemapLocation": "sitemap.json"
 }
