@@ -1,6 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "124121",
+  "navigationBarTitleText": "审核列表",
   "backgroundColor":"#ccc",
   "enablePullDownRefresh": true
 }

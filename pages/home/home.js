@@ -5,19 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    index:"11111",
-    name:[
-      [11,2,2,3,3,3,65],
-      [245,54,"hj","jhjh","uj"],
-      [78,787,854,234,452]
-    ],
-    numberHome:1
-  },
-  abtn:function(){
-    console.log(this.data.numberHome)
-    this.setData({
-      numberHome: this.data.numberHome+1
-    })
+    
   },
 
   /**
@@ -31,13 +19,17 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log(getApp())
-    const app = getApp();
-    console.log(app.globalData.lgl);
-    
-    wx.getUserInfo({
-      success:function(res){
-        // console.log(res)
+    console.log("11123213")
+    wx.request({
+      url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/communityUser/panel_list', //仅为示例，并非真实的接口地址
+      data: {
+       
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res.data)
       }
     })
   },
