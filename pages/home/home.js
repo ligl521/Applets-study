@@ -57,13 +57,13 @@ Page({
   checkboxChangeChild:function(e){
   
     var that = this;
-    console.log(e.target)
+    // console.log(e.target)
     if (e.detail.value[0] == undefined){
-      console.log(e.target.dataset.index)
-      var Ranking = 'DataList[' + e.detail.value[0] + '].phone';
+      // console.log(e.target.dataset.index)
+      var Ranking = 'DataList[' + e.target.dataset.index + '].phone';
       that.setData({
-        // [Ranking]: false,
-        // boxCheckedTotal:false,
+        [Ranking]: false,
+        boxCheckedTotal:false,
 
       })
     }else{
@@ -71,12 +71,26 @@ Page({
       var Ranking = 'DataList['+ e.detail.value[0] + '].phone';
       this.setData({
         [Ranking]:true
-      })
+      }) 
+      for(var i=0;i<that.data.DataList.length;i++){
+        // str += "" + this.data.DataList[i].phone;
+        // console.log(this.data.DataList[i])
+        console.log(that.data.DataList[i].phone)
+        if(that.data.DataList[i].phone == false){
+          console.log('ssss');
+          return;
+        }else{
+          console.log('ssss----');
+          that.setData({
+            boxCheckedTotal:true
+          })
+        }
+      }
       
       
     }
-    console.log(this.data.DataList)
-    console.log(e.detail.value[0])
+    // console.log(this.data.DataList)
+    // console.log(e.detail.value[0])
 
   },
 

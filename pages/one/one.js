@@ -86,8 +86,10 @@ Page({
   //       type:"sell",
   //       page:"1"
   //     },
-  //     success: function (res) {
-  //       console.log(res)
+  //     success: (res) => {
+  //       this.setData({
+  //         aa:"123"
+  //       })
   //     }
   //   })
   // },
