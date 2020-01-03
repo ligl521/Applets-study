@@ -5,7 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    "DataList": [
+      { phone: false, num:1},
+      { phone: false, num: 1},
+      { phone: false, num: 1},
+      { phone: false, num: 1},
+      { phone: false, num: 1},
+      { phone: false, num: 1},
+      { phone: false, num: 1}
+    ],
+    "boxCheckedTotal": false,
+    "boxChecked": false,
+    "boxCheckbox": 1,
+    "listArr":[]
   },
 
   /**
@@ -14,14 +26,82 @@ Page({
   onLoad: function (options) {
 
   },
+  // 全选
+  checkboxChange: function (e) {
+    var that = this;
+    console.log( e.detail.value[0])
+    if (e.detail.value[0]){
+      console.log(this.data.DataList[2].phone = true)
+      for (var i = 0; i < this.data.DataList.length; i++){
+        that.data.listArr.push(this.data.DataList[i])
+        var mtext = "DataList[" + i + "].phone"
+        this.setData({
+          [mtext]: 'true'
+        })
+       
+      }
+      console.log(that.data.DataList)
+    }else{
+      that.setData({ boxChecked: false });
+      for (var i = 0; i < this.data.DataList.length; i++) {
+        console.log(i)
+        var mtext = "DataList[" + i + "].phone"
+        that.setData({
+          [mtext]: false
+        })
+      }
+    }
+  },
+
+  //单个选
+  checkboxChangeChild:function(e){
+  
+    var that = this;
+    console.log(e.target)
+    if (e.detail.value[0] == undefined){
+      console.log(e.target.dataset.index)
+      var Ranking = 'DataList[' + e.detail.value[0] + '].phone';
+      that.setData({
+        // [Ranking]: false,
+        // boxCheckedTotal:false,
+
+      })
+    }else{
+      console.log(this.data.DataList[e.detail.value[0]].phone)
+      var Ranking = 'DataList['+ e.detail.value[0] + '].phone';
+      this.setData({
+        [Ranking]:true
+      })
+      
+      
+    }
+    console.log(this.data.DataList)
+    console.log(e.detail.value[0])
+
+  },
+
+  //123按钮
+  btn:function(){
+    console.log(this.data.DataList)
+  },
+
+
+
+
+
+
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    var that = this;
     console.log("11123213")
     wx.request({
-      url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/communityUser/panel_list', //仅为示例，并非真实的接口地址
+      // url:"www.baidu.com",
+      url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/postItem/list.do?pageNum=1&pageSize=10&isCheck=0&title=', //仅为示例，并非真实的接口地址
       data: {
        
       },
@@ -29,7 +109,10 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        console.log(res.data)
+        that.setData({
+          // DataList: res.data.data.list
+        })
+        console.log(res.data.data.list)
       }
     })
   },
