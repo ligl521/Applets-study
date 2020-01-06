@@ -22,10 +22,8 @@
             </label>
           </checkbox-group>
         </view>
-
-
         <view class="td th-three">{{index}}</view>
-        <view class="td th-two" bindtap="btnUpDetalis">{{item.num}}</view>
+        <view class="td th-two" bindtap="btnUpDetalis" data-id="{{item.itemId}}">{{item.title}}</view>
       </view>
      </block>
   </view>

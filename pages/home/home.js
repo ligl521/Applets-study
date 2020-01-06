@@ -6,13 +6,13 @@ Page({
    */
   data: {
     "DataList": [
-      { phone: false, num:"liskjksdjfklsdfjsdlkfj"},
-      { phone: false, num:"kdjfkldjfklsdjfkldsjfklsd"},
-      { phone: false, num:"fjks会计师的花费金额非加快速度djfksdjflksdfsdfsxzc"},
-      { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"},
-      { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"},
-      { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"},
-      { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"}
+      // { phone: false, num:"liskjksdjfklsdfjsdlkfj"},
+      // { phone: false, num:"kdjfkldjfklsdjfkldsjfklsd"},
+      // { phone: false, num:"fjks会计师的花费金额非加快速度djfksdjflksdfsdfsxzc"},
+      // { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"},
+      // { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"},
+      // { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"},
+      // { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"}
     ],
     "boxCheckedTotal": false,
     "boxChecked": false,
@@ -80,7 +80,7 @@ Page({
       })
     }else{
 
-      // console.log(this.data.DataList[e.detail.value[0]].phone)
+      console.log(e)
       var Ranking = 'DataList['+ e.detail.value[0] + '].phone';
       this.setData({
         [Ranking]:true,
@@ -88,7 +88,6 @@ Page({
         checkArr:[]
       })
       for(var i=0;i<that.data.DataList.length;i++){
-        console.log(that.data.DataList[i])
         if(that.data.DataList[i].phone == true){
           this.setData({
             checkNum:this.data.checkNum+1
@@ -115,9 +114,17 @@ Page({
     console.log(this.data.DataList)
   },
   //跳转详情
-  btnUpDetalis(){
+  btnUpDetalis:function(e){
+    console.log(e.currentTarget)
+    console.log(e.currentTarget.dataset.id)
+    let id = e.currentTarget.dataset.id
     wx:wx.navigateTo({
-      url: '/pages/details/details',
+      url:"/pages/details/details?id=" + id,
+    });
+
+    wx.setStorage({
+      key: "key",
+      data: e.currentTarget.dataset.index
     })
   },
 
@@ -146,7 +153,7 @@ Page({
       },
       success(res) {
         that.setData({
-          // DataList: res.data.data.list
+          DataList: res.data.data.list
         })
         console.log(res.data.data.list)
       }
@@ -157,7 +164,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this;
+    wx.request({
+      // url:"www.baidu.com",
+      url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/postItem/list.do?pageNum=1&pageSize=10&isCheck=0&title=', 
+      data: {
 
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        that.setData({
+          DataList: res.data.data.list
+        })
+        console.log(res.data.data.list)
+      }
+    })
   },
 
   /**
