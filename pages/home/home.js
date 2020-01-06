@@ -6,18 +6,20 @@ Page({
    */
   data: {
     "DataList": [
-      { phone: false, num:1},
-      { phone: false, num: 1},
-      { phone: false, num: 1},
-      { phone: false, num: 1},
-      { phone: false, num: 1},
-      { phone: false, num: 1},
-      { phone: false, num: 1}
+      { phone: false, num:"liskjksdjfklsdfjsdlkfj"},
+      { phone: false, num:"kdjfkldjfklsdjfkldsjfklsd"},
+      { phone: false, num:"fjks会计师的花费金额非加快速度djfksdjflksdfsdfsxzc"},
+      { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"},
+      { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"},
+      { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"},
+      { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"}
     ],
     "boxCheckedTotal": false,
     "boxChecked": false,
     "boxCheckbox": 1,
-    "listArr":[]
+    "listArr":[],
+    "checkNum":0,
+    "checkArr":[],
   },
 
   /**
@@ -31,28 +33,38 @@ Page({
     var that = this;
     console.log( e.detail.value[0])
     if (e.detail.value[0]){
-      console.log(this.data.DataList[2].phone = true)
+      // 多选框全部选中
       for (var i = 0; i < this.data.DataList.length; i++){
         that.data.listArr.push(this.data.DataList[i])
         var mtext = "DataList[" + i + "].phone"
         this.setData({
-          [mtext]: 'true'
+          [mtext]: true,
+          checkNum:0
         })
-       
       }
-      console.log(that.data.DataList)
+      // 赋值id
+      this.setData({checkArr:[]});
+      for(var i=0;i<that.data.DataList.length;i++){
+        console.log(that.data.DataList[i])
+        if(that.data.DataList[i].phone == true){
+          this.setData({
+            checkNum:this.data.checkNum+1
+          })
+          this.data.checkArr.push(that.data.DataList[i].num) 
+          console.log(this.data.checkArr)
+        }
+      }
     }else{
       that.setData({ boxChecked: false });
       for (var i = 0; i < this.data.DataList.length; i++) {
         console.log(i)
         var mtext = "DataList[" + i + "].phone"
         that.setData({
-          [mtext]: false
+          [mtext]: false,
         })
       }
     }
   },
-
   //单个选
   checkboxChangeChild:function(e){
   
@@ -64,26 +76,30 @@ Page({
       that.setData({
         [Ranking]: false,
         boxCheckedTotal:false,
-
+        checkNum:this.data.checkNum-1
       })
     }else{
-      console.log(this.data.DataList[e.detail.value[0]].phone)
+
+      // console.log(this.data.DataList[e.detail.value[0]].phone)
       var Ranking = 'DataList['+ e.detail.value[0] + '].phone';
       this.setData({
-        [Ranking]:true
-      }) 
+        [Ranking]:true,
+        checkNum:0,
+        checkArr:[]
+      })
       for(var i=0;i<that.data.DataList.length;i++){
-        // str += "" + this.data.DataList[i].phone;
-        // console.log(this.data.DataList[i])
-        console.log(that.data.DataList[i].phone)
-        if(that.data.DataList[i].phone == false){
-          console.log('ssss');
-          return;
-        }else{
-          console.log('ssss----');
-          that.setData({
-            boxCheckedTotal:true
+        console.log(that.data.DataList[i])
+        if(that.data.DataList[i].phone == true){
+          this.setData({
+            checkNum:this.data.checkNum+1
           })
+          this.data.checkArr.push(that.data.DataList[i].num) 
+          console.log(this.data.checkArr)
+          if(this.data.checkNum == that.data.DataList.length){
+            that.setData({
+              boxCheckedTotal:true
+            })
+          }
         }
       }
       
@@ -97,6 +113,12 @@ Page({
   //123按钮
   btn:function(){
     console.log(this.data.DataList)
+  },
+  //跳转详情
+  btnUpDetalis(){
+    wx:wx.navigateTo({
+      url: '/pages/details/details',
+    })
   },
 
 

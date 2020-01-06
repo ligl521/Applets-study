@@ -1,4 +1,4 @@
-/* pages/home/home.wxss */
+s/* pages/home/home.wxss */
 .table {
   border: 0px solid darkgray;
 }
@@ -10,9 +10,9 @@
   align-items: center;
 }
 .td {
-    width:40%;
-    justify-content: center;
-    text-align: center;
+  width:40%;
+  justify-content: center;
+  text-align: center;
 }
 .bg-w{
   background: snow;
@@ -20,8 +20,24 @@
 .bg-g{
   background: #E6F3F9;
 }
+.th-one{
+  width: 20%;
+}
+.th-two{
+  width: 70%;
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp:1;
+  -webkit-box-orient: vertical; 
+}
+.th-three{
+  width: 10%;
+}
 .th {
-  width: 40%;
+  /* width: 40%; */
   justify-content: center;
   background: #3366FF;
   color: #fff;
