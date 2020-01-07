@@ -22,10 +22,15 @@
             </label>
           </checkbox-group>
         </view>
-        <view class="td th-three">{{index}}</view>
+        <view class="td th-three">{{item.itemId}}</view>
         <view class="td th-two" bindtap="btnUpDetalis" data-id="{{item.itemId}}">{{item.title}}</view>
       </view>
      </block>
   </view>
-  <button bindtap="btn">123</button>
+  <!-- <button bindtap="btn">123</button> -->
+  <view class="Btn">
+  <button size="mini" type="warn" bindtap="refuse">{{aa}}</button>
+  <button size="mini" type="default">下一个</button>
+  <button size="mini" type="primary" bindtap="adopt">批量通过</button>
+</view>
 </view>

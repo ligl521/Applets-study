@@ -9,7 +9,11 @@
   flex-direction: row;
   justify-content: space-between;
 }
-button{
+button{ 
   height: 55rpx;
   margin-top: 10rpx;
+}
+.header{
+  margin-bottom: 30px;
+  font-size: 50rpx;
 }

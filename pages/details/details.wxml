@@ -2,6 +2,7 @@
 <!-- <import src="../../wxParse/wxParse.wxml"/> -->
 <!-- //这里data中article为bindName -->
 <!-- <template data="{{wxParseData:article.nodes}}"/> -->
+<view class="header">{{headerTitle}}</view>
 <rich-text nodes="{{nodes}}"></rich-text>
 <view class="Btn">
   <button size="mini" type="warn" bindtap="refuse">拒绝</button>

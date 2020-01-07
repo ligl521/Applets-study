@@ -20,13 +20,16 @@ Page({
     "listArr":[],
     "checkNum":0,
     "checkArr":[],
-  },
+    "pageSize":15,
+    "pageNum":1,
+    "aa":"批量拒绝"
+  }, 
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
   // 全选
   checkboxChange: function (e) {
@@ -50,7 +53,7 @@ Page({
           this.setData({
             checkNum:this.data.checkNum+1
           })
-          this.data.checkArr.push(that.data.DataList[i].num) 
+          this.data.checkArr.push(that.data.DataList[i].itemId) 
           console.log(this.data.checkArr)
         }
       }
@@ -76,24 +79,30 @@ Page({
       that.setData({
         [Ranking]: false,
         boxCheckedTotal:false,
-        checkNum:this.data.checkNum-1
+        checkNum:this.data.checkNum-1,
+        checkArr: []
       })
+      // 循环取值id
+      for (var i = 0; i < that.data.DataList.length; i++) {
+        if (that.data.DataList[i].phone == true) {
+          this.data.checkArr.push(that.data.DataList[i].itemId)
+          console.log(this.data.checkArr)
+        }
+      }
     }else{
-
-      console.log(e)
       var Ranking = 'DataList['+ e.detail.value[0] + '].phone';
       this.setData({
         [Ranking]:true,
         checkNum:0,
         checkArr:[]
       })
+      // 循环取值id
       for(var i=0;i<that.data.DataList.length;i++){
         if(that.data.DataList[i].phone == true){
           this.setData({
             checkNum:this.data.checkNum+1
           })
-          this.data.checkArr.push(that.data.DataList[i].num) 
-          console.log(this.data.checkArr)
+          this.data.checkArr.push(that.data.DataList[i].itemId) 
           if(this.data.checkNum == that.data.DataList.length){
             that.setData({
               boxCheckedTotal:true
@@ -108,10 +117,35 @@ Page({
     // console.log(e.detail.value[0])
 
   },
-
+  // 数据加载
+  getData:function(){
+    var that = this;
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      // url:"www.baidu.com",
+      url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/postItem/list.do?pageNum=1&pageSize=10&isCheck=0&title=', //仅为示例，并非真实的接口地址
+      data: {
+        pageSize: that.data.pageSize,
+        pageNum: that.data.pageNum,
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res.data.data.list)
+        wx.hideLoading();
+        that.setData({
+          DataList: res.data.data.list
+        })
+      }
+    })
+    
+  },
   //123按钮
   btn:function(){
-    console.log(this.data.DataList)
+    console.log(this.data.checkArr)
   },
   //跳转详情
   btnUpDetalis:function(e){
@@ -127,9 +161,81 @@ Page({
       data: e.currentTarget.dataset.index
     })
   },
+  // 批量拒绝
+  refuse:function(){
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定拒绝通过吗',
+      success(res) {
+        if (res.confirm) {
+          // 通过操作
+          wx.request({
+            // url:"www.baidu.com",
+            url: 'http://192.168.0.102:8080/nsi-1.0/manager/postItem/verify_failed.do',
+            data: {
+              itemId: that.data.checkArr
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded;charset=utf-8'  // 默认值
+            },
+            method: "post",
+            // 成功返回
+            success(res) {
+              wx.showToast({
+                title: '审核已拒绝',
+                icon: 'success',
+                duration: 2000
+              })
+              console.log(res)
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  // 批量通过
+  adopt:function(){
+    var that = this;
+    if(that.data.checkArr.length == 0){
+      console.log(that.data.checkArr.length == 0)
+    }else{
+      // wx.showModal({
+      //   title: '提示',
+      //   content: '确定通过审核吗',
+      //   success(res) {
+      //     if (res.confirm) {
+      //       // 通过操作
+      //       wx.request({
+      //         // url:"www.baidu.com",
+      //         url: 'http://192.168.0.102:8080/nsi-1.0/manager/postItem/verify_success.do',
+      //         data: {
+      //           itemId: that.data.checkArr
+      //         },
+      //         header: {
+      //           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'  // 默认值
+      //         },
+      //         method: "post",
+      //         // 成功返回
+      //         success(res) {
+      //           wx.showToast({
+      //             title: '审核已通过',
+      //             icon: 'success',
+      //             duration: 2000
+      //           })
+      //           this.getData();
+      //         }
+      //       }) 
+      //     } else if (res.cancel) {
+      //       console.log('用户点击取消')
+      //     }
+      //   }
+      // })
+    }
 
-
-
+  },
 
 
 
@@ -140,24 +246,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    var that = this;
-    console.log("11123213")
-    wx.request({
-      // url:"www.baidu.com",
-      url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/postItem/list.do?pageNum=1&pageSize=10&isCheck=0&title=', //仅为示例，并非真实的接口地址
-      data: {
-       
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        that.setData({
-          DataList: res.data.data.list
-        })
-        console.log(res.data.data.list)
-      }
-    })
+    this.getData();
   },
 
   /**
@@ -165,22 +254,7 @@ Page({
    */
   onShow: function () {
     var that = this;
-    wx.request({
-      // url:"www.baidu.com",
-      url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/postItem/list.do?pageNum=1&pageSize=10&isCheck=0&title=', 
-      data: {
-
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        that.setData({
-          DataList: res.data.data.list
-        })
-        console.log(res.data.data.list)
-      }
-    })
+    that.getData();
   },
 
   /**
@@ -201,14 +275,48 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.stopPullDownRefresh();
+    console.log("下拉刷新.....")
+    this.getData();
+  
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    var that = this;
+    // that.data.pageNum++;
+    // console.log(that.data.pageNum)
+    // console.log(that.data.DataList.length)
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
+    wx.request({
+      // url:"www.baidu.com",
+      url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/postItem/list.do?pageNum=1&pageSize=10&isCheck=0&title=', //仅为示例，并非真实的接口地址
+      data: {
+        pageSize: that.data.pageSize,
+        pageNum: that.data.pageNum++,
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res.data.data.list)
+        var DataListTwo = res.data.data.list;
+        console.log(DataListTwo)
+        for (var i = 0; i < DataListTwo.length;i++){
+            that.data.DataList.push(DataListTwo[i]);
+          }
+          that.setData({
+            DataList: that.data.DataList
+          })
+        if (res.data.data.list.length != 0){
 
+        }
+      }
+    })
   },
 
   /**
