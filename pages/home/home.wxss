@@ -22,14 +22,14 @@
   background: snow;
 }
 .th-one{
-  width: 10%;
+  width: 14%;
   border-left: 1rpx solid #777;
 }
 .th-one checkbox{
   margin-left: 10rpx;
 }
 .th-two{
-  width: 70%;
+  width: 100%;
   display: -webkit-box;
   overflow: hidden;
   white-space: normal;
@@ -39,13 +39,13 @@
   -webkit-box-orient: vertical; 
 }
 .th-three{
-  width: 10%;
+  width: 12%;
 }
 .th {
   /* width: 40%; */
   height: 60rpx;
   justify-content: center;
-  background: #67C23A;
+  background: #409EFF;
   border-bottom: 1rpx solid #777;
   border-right: 1rpx solid #777;
   border-top: 1rpx solid #777;

@@ -22,8 +22,8 @@ Page({
     "checkArr":[],
     "pageSize":15,
     "pageNum":1,
-    "aa":"批量拒绝",
-    "homeTotal":""
+    "homeTotal":"",
+    "isRefresh":true
   }, 
 
   /**
@@ -71,7 +71,6 @@ Page({
   },
   //单个选
   checkboxChangeChild:function(e){
-  
     var that = this;
     // console.log(e.target)
     if (e.detail.value[0] == undefined){
@@ -124,9 +123,10 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    console.log(that.data.pageNum)
     wx.request({
       // url:"www.baidu.com",
-      url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/postItem/list.do?pageNum=1&pageSize=10&isCheck=0&title=', //仅为示例，并非真实的接口地址
+      url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/postItem/list.do?pageNum=1&pageSize=10&isCheck=0&title=', 
       data: {
         pageSize: that.data.pageSize,
         pageNum: that.data.pageNum,
@@ -135,11 +135,22 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        console.log(res)
         //全部条数
         that.data.homeTotal = res.data.data.total;
+        // 取消loding
         wx.hideLoading();
+        if (that.data.isRefresh){
+          // 获取pagenum++ 数据重新渲染
+          var DataListTwo = res.data.data.list;
+          console.log(DataListTwo)
+          for (var i = 0; i < DataListTwo.length;i++){
+            that.data.DataList.push(DataListTwo[i]);
+          }
+          console.log(that.data.DataList)
+        }
         that.setData({
-          DataList: res.data.data.list
+          DataList: that.data.DataList
         })
       }
     })
@@ -187,7 +198,7 @@ Page({
               wx.showToast({
                 title: '审核已拒绝',
                 icon: 'success',
-                duration: 2000
+                duration: 1000
               })
              
             }
@@ -204,6 +215,7 @@ Page({
     if(that.data.checkArr.length == 0){
       console.log(that.data.checkArr.length == 0)
     }else{
+      console.log(that.data.checkArr)
       // wx.showModal({
       //   title: '提示',
       //   content: '确定通过审核吗',
@@ -225,7 +237,7 @@ Page({
       //           wx.showToast({
       //             title: '审核已通过',
       //             icon: 'success',
-      //             duration: 2000
+      //             duration: 1000
       //           })
       //           this.getData();
       //         }
@@ -255,8 +267,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-    // that.getData();
   },
 
   /**
@@ -272,41 +282,13 @@ Page({
   onUnload: function () {
 
   },
-  aabb:function(){
-    // this.getData()
-    
-    wx.showLoading({
-      title: '加载中',
-    })
-    wx.request({
-      // url:"www.baidu.com",
-      url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/postItem/list.do?pageNum=1&pageSize=10&isCheck=0&title=', //仅为示例，并非真实的接口地址
-      data: {
-        pageSize: that.data.pageSize,
-        pageNum: that.data.pageNum,
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        //全部条数
-        that.data.homeTotal = res.data.data.total;
-        wx.hideLoading();
-        that.setData({
-          DataList: res.data.data.list
-        })
-        console.log(that.data.DataList)
-      }
-    })
-    console.log("1111")
-  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
     var that = this;
     wx.stopPullDownRefresh();
-    that.setData({pageNum:1})
+    this.data.isRefresh = false;
     that.getData();
   
   },
@@ -316,41 +298,18 @@ Page({
    */
   onReachBottom: function () {
     var that = this;
-    console.log(Math.ceil(that.data.homeTotal/15));
-    if(that.data.pageNum++ > Math.ceil(that.data.homeTotal/15)){
-      console.log("111111111")
+    if(that.data.pageNum <= Math.ceil(that.data.homeTotal/15)){
+      that.data.pageNum = that.data.pageNum+1;
+      console.log(that.data.pageNum);
+      that.getData();
     }else{
-      console.log("-------")
-      wx.request({
-        // url:"www.baidu.com",
-        url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/postItem/list.do?pageNum=1&pageSize=10&isCheck=0&title=',
-        data: {
-          pageSize: that.data.pageSize,
-          pageNum: that.data.pageNum++,
-        },
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success(res) {
-          var DataListTwo = res.data.data.list;
-          console.log(DataListTwo)
-          for (var i = 0; i < DataListTwo.length;i++){
-            that.data.DataList.push(DataListTwo[i]);
-          }
-          console.log(that.data.DataList)
-          that.setData({
-            DataList: that.data.DataList
-          })
-        }
+      wx.showToast({
+        title: '加载完毕',
+        icon: 'success',
+        duration: 1000
       })
+
     }
-    
-    // that.data.pageNum++;
-    // console.log(that.data.pageNum)
-    // console.log(that.data.DataList.length)
-    // wx.showLoading({
-    //   title: '加载中',
-    // })
   },
 
   /**

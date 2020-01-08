@@ -29,7 +29,7 @@
   </view>
   <!-- <button bindtap="btn">123</button> -->
   <view class="Btn">
-  <button size="mini" type="warn" bindtap="refuse">{{aa}}</button>
+  <button size="mini" type="warn" bindtap="refuse">批量拒绝</button>
   <button size="mini" type="default" bindtap="aabb">下一个</button>
   <button size="mini" type="primary" bindtap="adopt">批量通过</button>
 </view>
