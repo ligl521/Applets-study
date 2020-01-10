@@ -1,4 +1,4 @@
-var WxParse = require('../../wxParse/wxParse.js');
+// var WxParse = require('../../wxParse/wxParse.js');
 // pages/two/two.js
 Page({
 
@@ -41,44 +41,42 @@ Page({
                   icon: 'success',
                   duration: 2000
                 });
-                that.setData({
-                  nodes : ""
-                })
-              }
-              //更新
-              wx.request({
-                // url:"www.baidu.com",
-                url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/postItem/list.do?pageNum=1&pageSize=10&isCheck=0&title=',
-                data: {
+                //更新
+                wx.request({
+                  // url:"www.baidu.com",
+                  url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/postItem/list.do?pageNum=1&pageSize=10&isCheck=0&title=',
+                  data: {
 
-                },
-                header: {
-                  'content-type': 'application/json' // 默认值
-                },
-                success(res) {
-                  console.log()
-                  if (res.data.data.list.length == 0){
-                    // 当前无数据 跳转list页面
-                    wx.showToast({
-                      title: '全部审核完毕',
-                      icon: 'success',
-                      duration: 2000
-                    });
-                    setTimeout(function(){
-                      wx.navigateBack({
-                        delta: 1
-                      })
-                    },2000)
-                  }else{
-                    //获取下一条的信息
-                    that.setData({
-                      itemId: res.data.data.list[0].itemId,
-                    })
-                    let data = res.data.data.list[0].content;
-                    that.setData({ nodes: data })
+                  },
+                  header: {
+                    'content-type': 'application/json' // 默认值
+                  },
+                  success(res) {
+                    console.log()
+                    if (res.data.data.list.length == 0){
+                      // 当前无数据 跳转list页面
+                      wx.showToast({
+                        title: '全部审核完毕',
+                        icon: 'success',
+                        duration: 2000
+                      });
+                      setTimeout(function(){
+                        wx.navigateBack({
+                          delta: 1
+                        })
+                      },2000)
+                    }else{
+                      //获取下一条的信息
+                      that.setData({
+                        itemId: res.data.data.list[0].itemId,
+                        headerTitle: res.data.data.list[0].title
+                      });
+                      let data = res.data.data.list[0].content;
+                      that.setData({ nodes: data })
+                    }
                   }
-                }
-              })
+                });
+              }
               console.log(res)
             },
             fail: function(res) {},
@@ -162,14 +160,6 @@ Page({
    
   },
 
-
-
-
-
-
-
-
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -188,8 +178,6 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        console.log(res.data.data.data)
-        console.log(res.data.data.postItem.title)
         that.setData({
           headerTitle: res.data.data.postItem.title
         })

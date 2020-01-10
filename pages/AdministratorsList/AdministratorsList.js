@@ -5,15 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    "DataList": [
-      // { phone: false, num:"liskjksdjfklsdfjsdlkfj"},
-      // { phone: false, num:"kdjfkldjfklsdjfkldsjfklsd"},
-      // { phone: false, num:"fjks会计师的花费金额非加快速度djfksdjflksdfsdfsxzc"},
-      // { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"},
-      // { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"},
-      // { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"},
-      // { phone: false, num:"fjksdjfksdjflksdfsdfsxzc"}
-    ],
+    "DataList": [],
     "boxCheckedTotal": false,
     "boxChecked": false,
     "boxCheckbox": 1,
@@ -23,7 +15,8 @@ Page({
     "pageSize":15,
     "pageNum":1,
     "homeTotal":"",
-    "isRefresh":true
+    "isRefresh":true,
+    "onShowNum":0
   }, 
 
   /**
@@ -110,8 +103,6 @@ Page({
           }
         }
       }
-      
-      
     }
     // console.log(this.data.DataList)
     // console.log(e.detail.value[0])
@@ -166,7 +157,7 @@ Page({
     console.log(e.currentTarget.dataset.id)
     let id = e.currentTarget.dataset.id
     wx:wx.navigateTo({
-      url:"/pages/details/details?id=" + id,
+      url:"/pages/AdministratorsDetails/AdministratorsDetails?id=" + id,
     });
 
     wx.setStorage({
@@ -255,18 +246,27 @@ Page({
 
 
 
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getData();
+    // this.data.isRefresh = true;
+    // this.getData();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this;
+    console.log(that.data.onShowNum+=1)
+    if (that.data.onShowNum == 0){
+      that.getData();
+    }else{
+      console.log(that.data.DataList)
+      that.data.DataList = [];
+      that.getData();
+    }
   },
 
   /**
