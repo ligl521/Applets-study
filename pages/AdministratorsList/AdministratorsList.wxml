@@ -1,4 +1,21 @@
-<view>
+<!-- 验证模块 -->
+<view class="hiddenBox" hidden="{{promptedBox}}">
+  <view class="HeaderPassword">管理员密码</view>
+  <view class='password-input-box' style='margin-top:50rpx;'>
+    <view class='input' bindtap='getFocus'>
+      <view wx:for="{{Length}}" wx:key="item" class='input-content'>
+        <input value="{{Value.length>=index+1?Value[index]:''}}" 
+        disabled password='{{isPassword}}' catchtap='Tap'></input>
+      </view>
+    </view>
+    <input name="password" password="{{true}}" class='password-input' maxlength="{{Length}}" focus="{{isFocus}}"   bindinput="password_input"></input>
+  </view>
+  <view hidden="{{hiddenBox}}" class="prompted">验证失败</view>
+  <view bindtap="ding" class="dingNews">订阅消息</view>
+</view>
+
+<!-- 操作模块 -->
+<view hidden="{{!promptedBox}}">
   <view class="table">
     <view class="tr bg-w">
       <view class="th th-one">
@@ -29,8 +46,8 @@
   </view>
   <!-- <button bindtap="btn">123</button> -->
   <view class="Btn">
-  <button size="mini" type="warn" bindtap="refuse">批量拒绝</button>
-  <button size="mini" type="default" bindtap="aabb">下一个</button>
-  <button size="mini" type="primary" bindtap="adopt">批量通过</button>
-</view>
+    <button size="mini" type="warn" bindtap="refuse">批量拒绝</button>
+    <button size="mini" type="default" bindtap="aabb">下一个</button>
+    <button size="mini" type="primary" bindtap="adopt">批量通过</button>
+  </view>
 </view>

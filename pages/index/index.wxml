@@ -1,13 +1,13 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view class="hiddenBox">
+  <view class="HederPassword">管理员密码</view>
+  <view class='password-input-box' style='margin-top:50rpx;'>
+    <view class='input' bindtap='getFocus'>
+      <view wx:for="{{Length}}" wx:key="item" class='input-content'>
+        <input value="{{Value.length>=index+1?Value[index]:''}}" 
+        disabled password='{{ispassword}}' catchtap='Tap'></input>
+      </view>
+    </view>
+    <input name="password" password="{{true}}" class='password-input' maxlength="{{Length}}" focus="{{isFocus}}"   bindinput="password_input"></input>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+  <view hidden="{{hiddenBox}}" class="prompted">验证失败</view>
 </view>

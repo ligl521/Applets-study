@@ -1,6 +1,5 @@
 // pages/home/home.js
-Page({
-
+Page({ 
   /**
    * 页面的初始数据
    */
@@ -16,7 +15,14 @@ Page({
     "pageNum":1,
     "homeTotal":"",
     "isRefresh":true,
-    "onShowNum":0
+    "onShowNum":0,
+    focus: false,
+    Length: 6,        //输入框个数  
+    isFocus: true,    //聚焦  
+    Value: "",        //输入的内容  
+    isPassword: false, //是否密文显示 true为密文， false为明文。
+    hiddenBox: true,  //控制显示隐藏
+    promptedBox:false
   }, 
 
   /**
@@ -108,6 +114,54 @@ Page({
     // console.log(e.detail.value[0])
 
   },
+  // 验证密码
+  password_input: function (e) {
+    var that = this;
+    var inputValue = e.detail.value;
+    console.log();
+    if (inputValue == "111111") {
+      wx.setStorage({
+        key: "password",
+        data: inputValue
+      })
+      
+      wx.showLoading({
+        title: '加载中',
+      })
+      setTimeout(function () {
+        wx.hideLoading()
+      }, 500)
+      // 修改状态
+      this.setData({
+        promptedBox:true
+      })
+    } else {
+      if (e.detail.value.length == 6) {
+        this.setData({
+          hiddenBox: false
+        })
+      } else {
+        this.setData({
+          hiddenBox: true
+        })
+      }
+    }
+    that.setData({
+      Value: inputValue
+    })
+  },
+  Tap() {
+    var that = this;
+    that.setData({
+      isFocus: true,
+    })
+  },
+
+  getFocus: function () {
+    this.setData({
+      focus: !this.data.focus
+    })
+  },
   // 数据加载
   getData:function(){
     var that = this;
@@ -150,6 +204,14 @@ Page({
   //123按钮
   btn:function(){
     console.log(this.data.checkArr)
+  },
+  //订阅消息
+  ding: function () {
+    wx.requestSubscribeMessage({
+      tmplIds: ['fsAvZRGsQ6Fd8zBtbDqtqBFcziSDW5TvgeTSP8sPbq4'],
+      success(res) { console.log(res) },
+      fail(res) { console.log(res) }
+    })
   },
   //跳转详情
   btnUpDetalis:function(e){
@@ -207,51 +269,15 @@ Page({
       console.log(that.data.checkArr.length == 0)
     }else{
       console.log(that.data.checkArr)
-      // wx.showModal({
-      //   title: '提示',
-      //   content: '确定通过审核吗',
-      //   success(res) {
-      //     if (res.confirm) {
-      //       // 通过操作
-      //       wx.request({
-      //         // url:"www.baidu.com",
-      //         url: 'http://192.168.0.102:8080/nsi-1.0/manager/postItem/verify_success.do',
-      //         data: {
-      //           itemId: that.data.checkArr
-      //         },
-      //         header: {
-      //           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'  // 默认值
-      //         },
-      //         method: "post",
-      //         // 成功返回
-      //         success(res) {
-      //           wx.showToast({
-      //             title: '审核已通过',
-      //             icon: 'success',
-      //             duration: 1000
-      //           })
-      //           this.getData();
-      //         }
-      //       }) 
-      //     } else if (res.cancel) {
-      //       console.log('用户点击取消')
-      //     }
-      //   }
-      // })
     }
 
   },
-
-
-
-
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    // this.data.isRefresh = true;
-    // this.getData();
+    
   },
 
   /**
@@ -259,6 +285,17 @@ Page({
    */
   onShow: function () {
     var that = this;
+    wx.getStorage({
+      key: 'password',
+      success(res) {
+        console.log(res.data == 111111)
+        if (res.data == 111111) {
+          that.setData({
+            promptedBox: true
+          })
+        }
+      }
+    })
     console.log(that.data.onShowNum+=1)
     if (that.data.onShowNum == 0){
       that.getData();

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/AdministratorsList/AdministratorsList",
+    "pages/index/index",
     "pages/AdministratorsDetails/AdministratorsDetails"
   ],
   "window": {
