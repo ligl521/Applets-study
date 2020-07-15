@@ -7,7 +7,9 @@ Page({
    */
   data: {
     dataList:[],
-    title:"one"
+    title:"one",
+    condition:false,
+    pageNum:1,//学校数据第几张页面
   },
   // js代码展示
   detailbtn(){
@@ -66,33 +68,28 @@ Page({
   onLoad: function (options) {
     //获取数据
     request({
-      url: '/visit/manager/school/list.do',
+      url: '/new/school/list.do',
       method:"get",
       data:{
+        pageNum: this.data.pageNum,
+        pageSize: 20,
+        searchKey:"",
+        verifySign: 1,
       },
     }).then(res => {
+      // 拼接数据
+      for(var i=0;i<res.data.data.list.length;i++){
+        this.data.dataList.push(res.data.data.list[i])
+      }
+      console.log(this.data.dataList)
       this.setData({
-        dataList:res.data.data.list
+        dataList: this.data.dataList
       })
+      this.data.condition = false;
     }).catch(err => {
       console.log(err)
     })
   }, 
-  // onLoad: function (options) {
-  //   wx.request({
-  //     url: 'http://123.207.32.32:8080/home/data',
-  //     method:"post",
-  //     data:{
-  //       type:"sell",
-  //       page:"1"
-  //     },
-  //     success: (res) => {
-  //       this.setData({
-  //         aa:"123"
-  //       })
-  //     }
-  //   })
-  // },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -126,14 +123,24 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log("刷新")
+    wx.stopPullDownRefresh();  //停止下拉刷新
+    
   },
-
+  
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.setData({
+      pageNum:this.data.pageNum+1
+    })
+    // this.onLoad();
+    this.setData({
+      condition:true
+    })
+    console.log(this.data.pageNum)
+    console.log("加载加载")
   },
 
   /**

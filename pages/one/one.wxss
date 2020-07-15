@@ -5,3 +5,12 @@
 .red{
   color: red;
 }
+.bgcolor{
+  background: #;
+}
+.vanLoding{
+  position: fixed;
+  left: 50%;
+  bottom: 10rpx;
+  transform: translateX(-50%);
+}

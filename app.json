@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/two/two",
+    "pages/one/one",
     "pages/AdministratorsList/AdministratorsList",
     "pages/index/index",
     "pages/AdministratorsDetails/AdministratorsDetails"

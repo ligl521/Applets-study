@@ -1,33 +1,50 @@
 <!--pages/one/one.wxml-->
-<text class="nav">pages/one/one.wxml</text>
-<include src="/pages/stype/nav.wxml" />
-<view class="box">2321341545</view>
-<include src="/pages/stype/foots.wxml" />
-<wxs src="../wxs/info.wxs" module="info" />
-<view class='red'>
-  <view wx:for="{{dataList}}" wx:key="{{index}}">
-    <text>{{item.id}}</text>
-    <text>{{item.name}}</text>
-    <text>{{item.schoolName}}</text>
-  </view>  
+<view class="bgcolor">
+
+  <van-button type="primary">按钮</van-button>
+  <text class="nav">pages/one/one.wxml</text>
+  <include src="/pages/stype/nav.wxml" />
+  <view class="box">2321341545</view>
+  <include src="/pages/stype/foots.wxml" />
+  <wxs src="../wxs/info.wxs" module="info" />
+  <view class='red'>
+    <view wx:for="{{dataList}}" wx:key="{{index}}">
+      <text>{{item.id}}</text>
+      <text>{{item.name}}</text>
+      <text>{{item.schoolName}}</text>
+    </view>  
+  </view>
+  <view class='red'>
+    <view wx:for="{{dataList}}" wx:key="{{index}}">
+      <text>{{item.id}}</text>
+      <text>{{item.name}}</text>
+      <text>{{item.schoolName}}</text>
+    </view>  
+  </view>
+
+  <!-- <view bindtap='handeleshowToast'>{{info.lgl}}</view>
+  <view bindtap='handeleshowModal'>确定取消弹出框</view>
+  <view bindtap='handeleshowLoading'>loding</view>
+
+  <button open-type="share">转发</button> -->
+
+  <!--navigator 普通跳转 自带返回按钮 -->
+  <!-- <navigator url='/pages/control/control'>跳转到详情</navigator>  -->
+
+  <!-- navigator 属性：open-type (redirect)没有返回按钮 （switchTab)跳转导航-->
+  <!-- <navigator url='/pages/home/home' 
+            open-type='switchTab'
+  >跳转到详情</navigator>  -->
+
+  <!-- 跳转传值 ?name=李国龙&age=18&height=1.75-->
+  <!-- <navigator url='/pages/control/control?name=李国龙&age=18&height=1.75'>跳转传值</navigator> 
+  <view>{{title}}</view> -->
+
+  <!-- 主页面wxml -->
+  <!-- <view bindtap="detailbtn">代码跳转</view> -->
+  <!-- <van-loading class='' vertical type="spinner" /> -->
+  <van-loading type="spinner" color="#1989fa" />
+  <!-- <van-loading wx:if="{{condition}}" color="#000" class='vanLoding'></van-loading> -->
+
+
 </view>
-<view bindtap='handeleshowToast'>{{info.lgl}}</view>
-<view bindtap='handeleshowModal'>确定取消弹出框</view>
-<view bindtap='handeleshowLoading'>loding</view>
-
-<button open-type="share">转发</button>
-
-<!--navigator 普通跳转 自带返回按钮 -->
-<navigator url='/pages/control/control'>跳转到详情</navigator> 
-
-<!-- navigator 属性：open-type (redirect)没有返回按钮 （switchTab)跳转导航-->
-<navigator url='/pages/home/home' 
-           open-type='switchTab'
->跳转到详情</navigator> 
-
-<!-- 跳转传值 ?name=李国龙&age=18&height=1.75-->
-<navigator url='/pages/control/control?name=李国龙&age=18&height=1.75'>跳转传值</navigator> 
-<view>{{title}}</view>
-
-<!-- 主页面wxml -->
-<view bindtap="detailbtn">代码跳转</view>

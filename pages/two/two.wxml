@@ -11,3 +11,4 @@
     {{item}}
   </viwe>
   <text>{{aa}}</text>
+  <van-loading /> <van-loading type="spinner" />

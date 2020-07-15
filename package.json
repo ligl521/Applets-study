@@ -1,0 +1,22 @@
+{
+  "name": "vis2019-admissionticket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ligl521/vis2019-AdmissionTicket.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ligl521/vis2019-AdmissionTicket/issues"
+  },
+  "homepage": "https://github.com/ligl521/vis2019-AdmissionTicket#readme",
+  "dependencies": {
+    "@vant/weapp": "^1.3.3"
+  }
+}
