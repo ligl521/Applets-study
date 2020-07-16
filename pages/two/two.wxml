@@ -1,8 +1,9 @@
 <!--pages/two/two.wxml-->
-<text>pages/two/two.wxml</text>
-<wxs src="../wxs/two.wxs" module="data"></wxs>
-<view>{{data.two(pro)}}</view>
-
+<view class="bgcolor">
+  <text>pages/two/two.wxml</text>
+  <wxs src="../wxs/two.wxs" module="data"></wxs>
+  <view>{{data.two(pro)}}</view>
+  <view>5555::::::{{pro}}</view>
 
 
   <viwe
@@ -12,3 +13,37 @@
   </viwe>
   <text>{{aa}}</text>
   <van-loading /> <van-loading type="spinner" />
+
+
+  <van-cell-group>
+    <van-field
+      value="{{ value }}"
+      placeholder="请输入用户名"
+      border="{{ false }}"
+      bind:change="onChange"
+    />
+  </van-cell-group>
+  <van-cell-group >
+    <van-field
+      value="{{ username }}"
+      label="用户名"
+      placeholder="请输入用户名"
+      error
+    />
+    <van-field
+      value="{{phone}}"
+      label="手机号"
+      placeholder="请输入手机号"
+      error-message="{{errorPhone}}"
+      border="{{ false }}"
+      bind:change="onChange"
+    />
+  </van-cell-group>
+  <van-button color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap='btnForm'>渐变色按钮</van-button>
+ 
+    
+  
+  <view>文件上传1111</view>
+  <van-uploader file-list="{{ fileList }}" bind:delete="deleteFile" bind:after-read="afterRead" disabled='{{updataFile}}' />
+
+</view>

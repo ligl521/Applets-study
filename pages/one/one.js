@@ -135,7 +135,7 @@ Page({
     this.setData({
       pageNum:this.data.pageNum+1
     })
-    // this.onLoad();
+    this.onLoad();
     this.setData({
       condition:true
     })
