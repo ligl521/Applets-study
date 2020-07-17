@@ -45,5 +45,5 @@
   
   <view>文件上传1111</view>
   <van-uploader file-list="{{ fileList }}" bind:delete="deleteFile" bind:after-read="afterRead" disabled='{{updataFile}}' />
-
+  <my-two-uplodaImg></my-two-uplodaImg>
 </view>

@@ -47,9 +47,29 @@ Page({
     }
   },
   onChange: function (event){
+    console.log(event.detail)
     this.setData({
       phone: event.detail
     })
+    if (this.data.phone == "") {
+      this.setData({
+        errorPhone: "请输入手机号"
+      })
+    } else {
+      console.log(this.data.phone)
+      if (!(/^1[34578]\d{9}$/.test(this.data.phone))) {
+        this.setData({
+          errorPhone: "请验证手机号"
+        })
+        console.log('失败 ')
+
+      } else {
+        console.log('成功 ')
+        this.setData({
+          errorPhone: ""
+        })
+      }
+    }
     console.log();
   },
   deleteFile:function(e){

@@ -1,0 +1,5 @@
+<view>
+  <text>组件 图片-文件多个上传</text>
+  <button class="mini-btn" type="warn" size="mini" bindtap="btnUplodaFila">按钮</button>
+</view>
+
