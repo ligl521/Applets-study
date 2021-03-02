@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/aa/aa",
     "pages/two/two",
     "pages/one/one",
     "pages/AdministratorsList/AdministratorsList",

@@ -1,5 +1,8 @@
 <!--pages/two/two.wxml-->
 <view class="bgcolor">
+  <view class="header">
+    <image src="../../assets/img/logo.jpg" class="imgLogo"></image>
+  </view>
   <text>pages/two/two.wxml</text>
   <wxs src="../wxs/two.wxs" module="data"></wxs>
   <view>{{data.two(pro)}}</view>

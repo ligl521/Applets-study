@@ -1,4 +1,5 @@
 {
+  "navigationStyle":"custom",
   "usingComponents": {
     "my-two-uplodaImg":"../../components/my-two-uploadImg/my-two-uploadImg",
     "van-loading": "@vant/weapp/loading/index",
