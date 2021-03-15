@@ -1,8 +1,4 @@
-<!--pages/aa/aa.wxml-->
-<text>pages/aa/aa.wxml</text>
-<van-search
-  value="{{ value }}"
-  input-align="center"
-  bind:blur="btn"
-  placeholder="请输入搜索关键词"
-/>
+<!--index.wxml-->
+<view class="container">
+  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+</view>
