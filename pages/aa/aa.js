@@ -1,4 +1,5 @@
 import * as echarts from '../../ec-canvas/echarts';
+import {activityPayList} from "../../utils/api.js"
 
 let chart = null;
 
@@ -137,7 +138,11 @@ Page({
   // }
 
   onReady: function () {
+    activityPayList({
 
+    }).then(res => {
+      console.log(res)
+    })
   wx:wx.request({
     url: 'https://api.html9.top/cs/rankObject/list.do',
     data: {

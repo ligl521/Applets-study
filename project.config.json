@@ -31,9 +31,9 @@
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
-    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
+    "userConfirmedBundleSwitch": false,
     "minifyWXSS": true,
     "bundle": false,
     "useApiHostProcess": true

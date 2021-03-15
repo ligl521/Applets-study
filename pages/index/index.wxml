@@ -1,13 +1,14 @@
-<view class="hiddenBox">
-  <view class="HederPassword">管理员密码</view>
-  <view class='password-input-box' style='margin-top:50rpx;'>
-    <view class='input' bindtap='getFocus'>
-      <view wx:for="{{Length}}" wx:key="item" class='input-content'>
-        <input value="{{Value.length>=index+1?Value[index]:''}}" 
-        disabled password='{{ispassword}}' catchtap='Tap'></input>
-      </view>
+<!--pages/index/index.wxml-->
+<text>pages/index/index.wxml</text>
+<view>
+  <view>
+    <view wx:for="{{dataList}}" wx:key="{{index}}">
+      <view class=""><image src="{{item.imageUrl}}" mode="aspectFill"></image></view>
+      <view><text>{{item.name}}</text><text>{{item.type}}</text></view>
+      <view>{{item.createTime}}</view>
+      {{item.imageUrl}}
     </view>
-    <input name="password" password="{{true}}" class='password-input' maxlength="{{Length}}" focus="{{isFocus}}"   bindinput="password_input"></input>
+    {{dataList}}
+ 
   </view>
-  <view hidden="{{hiddenBox}}" class="prompted">验证失败</view>
 </view>

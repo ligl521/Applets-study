@@ -1,57 +1,75 @@
+// pages/index/index.js
+import {getRankObjectList} from "../../utils/api.js"
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    focus: false,
-    Length: 6,        //输入框个数  
-    isFocus: true,    //聚焦  
-    Value: "",        //输入的内容  
-    ispassword: false, //是否密文显示 true为密文， false为明文。
-    hiddenBox: true,  //控制显示隐藏
+    dataList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    getRankObjectList({
 
-  },
-  // 验证密码
-  password_input: function (e) {
-    var that = this;
-    var inputValue = e.detail.value;
-    console.log();
-    if (inputValue == "111111"){
-      wx.redirectTo({
-        url: '/pages/AdministratorsList/AdministratorsList'
+    }).then(res =>{
+      this.setData({
+
+        dataList:res.data.data
       })
-    }else{
-      if (e.detail.value.length == 6){
-        this.setData({
-          hiddenBox:false
-        })
-      }else{
-        this.setData({
-          hiddenBox: true
-        })
-      }
-    }
-    that.setData({
-      Value: inputValue
+      console.log(this)
     })
   },
 
-  Tap() {
-    var that = this;
-    that.setData({
-      isFocus: true,
-    })
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
   },
 
-  getFocus: function () {
-    this.setData({
-      focus: !this.data.focus
-    })
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
   },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 })

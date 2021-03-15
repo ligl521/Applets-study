@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/aa/aa",
     "pages/two/two",
     "pages/one/one",
     "pages/AdministratorsList/AdministratorsList",
-    "pages/index/index",
     "pages/AdministratorsDetails/AdministratorsDetails"
   ],
   "window": {
